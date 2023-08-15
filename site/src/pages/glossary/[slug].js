@@ -1,6 +1,6 @@
 import { REVALIDATE } from 'constants/common';
 import WordPage from 'pages/WordPage/WordPage';
-import { getSingleBySlug, getAllPath } from 'src/strapi';
+import { getSingleBySlug, getAllPath, getSiteConfig } from 'src/strapi';
 import MetaLayout from 'components/MetaLayout/MetaLayout';
 
 const Word = ({ data }) => {
@@ -17,11 +17,14 @@ const Word = ({ data }) => {
 };
 
 export async function getStaticProps({ params: { slug } }) {
-  const words = await getSingleBySlug('glossaries', slug, {
-    paragraphs: {
-      populate: '*',
-    },
-  });
+  const [words, config] = await Promise.all([
+      getSingleBySlug('glossaries', slug, {
+      paragraphs: {
+        populate: '*',
+      },
+    }),
+    getSiteConfig(),
+  ]);
 
   if (!words) {
     return {
@@ -33,12 +36,14 @@ export async function getStaticProps({ params: { slug } }) {
     revalidate: REVALIDATE,
     props: {
       data: words,
+      config,
     },
   };
 }
 
 export async function getStaticPaths() {
   const words = await getAllPath('glossaries');
+
 
   const paths = words.map(word => ({
     params: { slug: word.slug },

@@ -1,0 +1,141 @@
+@import 'styles/typography';
+@import 'styles/helpers';
+@import 'styles/colors';
+@import 'styles/mixins';
+
+.container {
+  position: relative;
+
+  .sideNavigation {
+    left: size(40);
+  }
+}
+
+.sideNavigation {
+  left: size(40);
+  overflow: hidden;
+
+  aside {
+    overflow: hidden;
+  }
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  padding-top: size(30);
+
+  @include mobile {
+    padding: size(20) size(10) 0;
+    display: flex;
+    flex-direction: column;
+    min-height: unset;
+  }
+}
+
+.contentWrapper {
+  grid-area: 2 / 2;
+  min-height: 100vh;
+
+  @include mobile {
+    min-height: unset;
+  }
+}
+
+.titleWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: size(20);
+
+  @include mobile {
+    grid-template-columns: 100%;
+    grid-row-gap: size(20);
+  }
+}
+
+.title {
+  @include heading-01;
+  padding: 0 size(30) size(30);
+
+  @include mobile {
+    padding: 0;
+    max-width: 100%;
+  }
+}
+
+.description {
+  @include heading-02;
+  padding: 0 size(30) size(30);
+
+  @include mobile {
+    padding: 0;
+    max-width: 100%;
+  }
+}
+
+.tagsWrapper {
+  display: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include mobile {
+    display: block;
+    position: sticky;
+    top: size(20);
+    width: 100%;
+    overflow: auto;
+    margin-bottom: size(20);
+    background-color: $black;
+    z-index: 2;
+  }
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  grid-gap: size(8);
+  width: 100%;
+  padding: 0;
+  margin-bottom: size(24);
+
+  @include mobile {
+    grid-gap: size(10);
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-bottom: 0;
+    padding-top: size(20);
+    padding-bottom: size(10);
+    background-color: $black;
+  }
+}
+
+.tabItem {
+  display: flex;
+}
+
+.footerSection {
+  @include mobile {
+    display: none;
+  }
+}
+
+.lastSection {
+  display: none;
+
+  @include mobile {
+    display: block;
+    overflow: hidden;
+  }
+}
+
+.lastSectionWrapper {
+  width: calc(100% + 4px);
+  margin-left: -2px;
+  margin-right: -2px;
+}

@@ -1,0 +1,61 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "incremental": true,
+    "jsx": "preserve",
+    "baseUrl": "./",
+  "paths": {
+    "components/*": ["src/components/common/*"],
+    "hooks/*": ["src/hooks/*"],
+    "pages/*": ["src/components/pages/*"],
+    "providers/*": ["src/components/providers/*"],
+    "styles/*": ["src/styles/*"],
+    "utils/*": ["src/utils/*"],
+    "public/*": ["public/*"],
+    "images/*": ["public/images/*"],
+    "constants/*": ["src/constants/*"],
+    "stubs/*": ["src/stubs/*"],
+    "lottie/*": ["public/lottie/*"],
+    "entities/*": ["src/domain/entities/*"]
+  }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+, "src/strapi/request.js", "src/components/pages/Error/Error.jsx"  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "baseUrl": "./",
+  "paths": {
+    "components/*": ["src/components/common/*"],
+    "hooks/*": ["src/hooks/*"],
+    "pages/*": ["src/components/pages/*"],
+    "providers/*": ["src/components/providers/*"],
+    "styles/*": ["src/styles/*"],
+    "utils/*": ["src/utils/*"],
+    "public/*": ["public/*"],
+    "images/*": ["public/images/*"],
+    "constants/*": ["src/constants/*"],
+    "stubs/*": ["src/stubs/*"],
+    "lottie/*": ["public/lottie/*"],
+    "entities/*": ["src/domain/entities/*"]
+  }
+}

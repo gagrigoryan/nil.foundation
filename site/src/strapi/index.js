@@ -64,7 +64,7 @@ export const getSingleBySlug = async (type, slug, populate) => {
   return serializeSingle(document.data.data[0], type);
 };
 
-export const getAllPath = async type => {
+export const getAllPath = async (type, params = {}) => {
   const collection = await Req.GET({
     url: `/${type}/`,
     params: {
@@ -73,6 +73,7 @@ export const getAllPath = async type => {
         page: 1,
         pageSize: 100,
       },
+      ...params,
     },
     paramsSerializer: qs.stringify,
     withToken: true,
@@ -80,3 +81,6 @@ export const getAllPath = async type => {
 
   return rebuildList(collection.data.data, type);
 };
+
+
+export { getSiteConfig } from './getSiteConfig';

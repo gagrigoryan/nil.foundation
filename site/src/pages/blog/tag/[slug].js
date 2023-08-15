@@ -1,5 +1,10 @@
 import { REVALIDATE } from 'constants/common';
-import { getAllPath, getCollection, getCollectionAndMeta } from 'src/strapi';
+import {
+  getAllPath,
+  getCollection,
+  getCollectionAndMeta,
+  getSiteConfig,
+} from 'src/strapi';
 
 import BlogPage from 'pages/BlogsPage';
 import MetaLayout from 'components/MetaLayout';
@@ -13,7 +18,7 @@ const Blogs = ({ cms, seo }) => (
 );
 
 export async function getStaticProps({ params: { slug } }) {
-  const [posts, tags, categories] = await Promise.all([
+  const [posts, tags, categories, config] = await Promise.all([
     getCollectionAndMeta('blogs', {
       sort: ['date:desc', 'isFeature:desc'],
       filters: {
@@ -28,8 +33,17 @@ export async function getStaticProps({ params: { slug } }) {
         pageSize: 10,
       },
     }),
-    getCollection('tags'),
+    getCollection('tags', {
+      filters: {
+        blogs: {
+          id: {
+            $notNull: true,
+          },
+        },
+      },
+    }),
     getCollection('categories'),
+    getSiteConfig(),
   ]);
 
   return {
@@ -42,6 +56,7 @@ export async function getStaticProps({ params: { slug } }) {
         meta: posts.meta,
       },
       seo: seoData,
+      config,
     },
   };
 }

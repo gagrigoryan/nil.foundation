@@ -4,6 +4,7 @@ import { REVALIDATE } from 'constants/common';
 import Careers from 'pages/Careers';
 
 import { careersPageData, seoData } from 'stubs/careersPageData';
+import { getSiteConfig } from 'src/strapi';
 
 const CareersPage = ({ data, seo }) => (
   <MetaLayout seo={seo}>
@@ -12,8 +13,9 @@ const CareersPage = ({ data, seo }) => (
 );
 
 export async function getStaticProps() {
+  const config = await getSiteConfig();
   return {
-    props: { data: careersPageData, seo: seoData },
+    props: { data: careersPageData, seo: seoData, config },
     revalidate: REVALIDATE,
   };
 }

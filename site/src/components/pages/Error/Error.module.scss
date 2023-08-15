@@ -1,0 +1,131 @@
+@use '~styles/helpers' as *;
+@use '~styles/typography' as *;
+@use '~styles/mixins' as *;
+@use '~styles/colors' as *;
+
+.root {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(5, 1fr);
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    margin-top: 0;
+  }
+}
+
+.navigation {
+  padding-top: size(20);
+
+  @include mobile {
+    padding: 0;
+  }
+}
+
+.content {
+  grid-column: span 4 / 6;
+}
+
+.background {
+  background: url('/icons/dots.svg'), repeat;
+}
+
+.arrow {
+  width: size(18);
+  height: size(14);
+  margin-right: size(6);
+  transform: rotate(270deg);
+}
+
+.paragraph {
+  @include paragraph;
+}
+
+.title {
+  background-color: $black;
+  margin: size(-30) 0 size(-5);
+
+  font-size: size(330);
+  line-height: size(340);
+  letter-spacing: -0.04em;
+
+  @include mobile {
+    padding: 0 size(10) size(34);
+    margin: 0;
+
+    font-size: size(216);
+    line-height: size(170);
+    letter-spacing: -0.02em;
+  }
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+
+  @include mobile {
+    position: relative;
+    padding: size(10) size(12);
+    background-color: $black;
+  }
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+
+  @include mobile {
+    flex-direction: column;
+  }
+}
+
+.head {
+  @include mobile {
+    width: 100%;
+    padding: size(20) size(10) size(10);
+  }
+}
+
+.main {
+  width: 100%;
+
+  @include mobile {
+    height: max-content;
+  }
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  @include mobile {
+    height: calc(get-real-vh(100) - size(270));
+  }
+}
+
+.text {
+  padding: size(112) size(30) size(30);
+  background-color: $black;
+
+  @include paragraph;
+
+  @include mobile {
+    margin-top: size(-20);
+    padding: size(115) size(10) size(10);
+    letter-spacing: -0.01em;
+  }
+}
+
+.box {
+  width: size(272);
+  background-color: $black;
+}
+
+.box1 {
+  height: calc(get-real-vh(100) - size(335));
+  margin-top: size(305);
+}
+
+.box2 {
+  margin-top: size(486);
+}

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { string } from 'prop-types';
 import cx from 'classnames';
 import { useRouter } from 'next/router';
@@ -14,11 +14,22 @@ import BurgerMenu from './BurgerMenu';
 import s from './Header.module.scss';
 import { links } from './stub';
 
-const Header = ({ className }) => {
+const Header = ({ className, config }) => {
   const router = useRouter();
   const { isMobile } = useViewport();
 
   const [isBurgerOpen, setBurgerOpen] = useState(false);
+
+  const realLinks = useMemo(() => {
+    if (config.isGlossaryOn) {
+      return {
+        ...links,
+        other: [...links.other, { name: 'Glossary', link: '/glossary' },],
+      }
+    }
+    return links;
+  }, [config]);
+
 
   useEffect(() => {
     setBurgerOpen(false);
@@ -46,7 +57,7 @@ const Header = ({ className }) => {
             className={s.logo}
           />
         </Button>
-        {links.main.map(el => (
+        {realLinks.main.map(el => (
           <Button
             key={el.name}
             className={cx(s.btn, {
@@ -59,7 +70,7 @@ const Header = ({ className }) => {
           </Button>
         ))}
         <div className={s.box}>
-          {links.other.map(el => (
+          {realLinks.other.map(el => (
             <Button
               key={el.name}
               href={el.link}

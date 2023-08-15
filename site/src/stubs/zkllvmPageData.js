@@ -70,7 +70,7 @@ export const zkllvmPageData = {
           'Proving computations with zero-knowledge increases protocol capacity and significantly cuts average time required to process an operation.',
       },
       {
-        title: 'Enhance Privacy and Security',
+        title: 'Enhance privacy and security',
         icon: 'key',
         description:
           'Zero-knowledge technology lets applications selectively share data with third parties, ensuring privacy without sacrificing the security and trust of your users.',

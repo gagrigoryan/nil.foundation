@@ -1,7 +1,7 @@
 import PostPage from 'pages/PostPage';
 import MetaLayout from 'components/MetaLayout';
 
-import { getAllPath, getCollection, getSingleBySlug } from 'src/strapi';
+import { getAllPath, getCollection, getSingleBySlug, getSiteConfig } from 'src/strapi';
 
 import { REVALIDATE } from 'constants/common';
 
@@ -18,7 +18,7 @@ const Post = ({ data, recommendedPosts, content }) => (
 );
 
 export async function getStaticProps({ params: { slug } }) {
-  const [posts, articles] = await Promise.all([
+  const [posts, articles, config] = await Promise.all([
     getCollection('blogs', {
       filters: {
         $or: [
@@ -46,6 +46,7 @@ export async function getStaticProps({ params: { slug } }) {
         populate: '*',
       },
     }),
+    getSiteConfig(),
   ]);
 
   if (!articles) {
@@ -63,12 +64,14 @@ export async function getStaticProps({ params: { slug } }) {
           ? articles.recommendedPosts
           : posts,
       content: postPage,
+      config,
     },
   };
 }
 
 export async function getStaticPaths() {
   const articles = await getAllPath('blogs');
+
 
   const paths = articles.map(article => ({
     params: { slug: article.slug },

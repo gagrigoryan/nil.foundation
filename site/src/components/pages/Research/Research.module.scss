@@ -1,5 +1,4 @@
 @use '~styles/helpers' as *;
-@use '~styles/typography' as *;
 @use '~styles/mixins' as *;
 @use '~styles/colors' as *;
 
@@ -7,159 +6,25 @@
   position: relative;
 }
 
-.sideNavigation {
-  left: size(40);
-
-  aside {
-    overflow: hidden;
-  }
-
-  @include mobile {
-    display: none;
-  }
-}
-
-.root {
+.cardList {
   display: grid;
-  grid-template-columns: 1fr 4fr;
-  padding-top: size(30);
-  min-height: 100vh;
-
-  @include mobile {
-    padding-top: size(20);
-    display: flex;
-    justify-content: center;
-  }
-}
-
-.stickySideTitle {
-  @include heading-02;
-}
-
-.tagsWrapper {
-  position: absolute;
-  bottom: size(30);
-
-  @include mobile {
-    position: sticky;
-    z-index: 4;
-    top: size(20);
-    overflow-x: auto;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-}
-
-.tagsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: size(8);
-  padding: size(24) size(24) size(24) 0;
-
-  @include mobile {
-    gap: size(10);
-    width: max-content;
-    padding: size(20) 0 size(10);
-    background-color: $black;
-  }
-}
-
-.pageContent {
-  grid-column: 2 / 2;
-
-  @include mobile {
-    display: flex;
-    flex-direction: column;
-    max-width: size(355);
-  }
-}
-
-.info {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  margin-bottom: size(20);
-
-  @include mobile {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: size(20);
-    margin-bottom: size(40);
-  }
-}
-
-.activeTag {
-  background-color: $white;
-  color: $black;
-}
-
-.textWrapper {
-  max-width: size(544);
-  min-height: size(210);
-  padding: 0 size(30) size(30) size(30);
-
-  @include mobile {
-    display: flex;
-    flex-flow: column;
-    align-self: flex-start;
-    min-height: auto;
-    padding: 0;
-  }
-}
-
-.cards {
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  grid-template-columns: 1fr 1fr;
   gap: size(30);
+  padding: 0;
   margin-bottom: size(40);
 
   @include mobile {
+    grid-template-columns: 100%;
     gap: size(20);
     margin-top: size(20);
   }
 }
 
 .card {
-  max-width: size(529);
+  height: 100%;
   min-height: size(234);
 
   @include mobile {
     min-height: auto;
   }
-}
-
-.pageTitle {
-  @include heading-01;
-}
-
-.pageSubtitle {
-  @include heading-02;
-
-  @include mobile {
-    max-width: size(320);
-  }
-}
-
-.footerSection {
-  @include mobile {
-    display: none;
-  }
-}
-
-.lastSection {
-  display: none;
-
-  @include mobile {
-    display: block;
-    overflow: hidden;
-  }
-}
-
-.lastSectionWrapper {
-  width: calc(100% + 4px);
-  margin-left: -2px;
-  margin-right: -2px;
 }

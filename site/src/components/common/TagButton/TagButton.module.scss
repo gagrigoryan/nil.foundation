@@ -10,3 +10,8 @@
 
   @include sm-paragraph;
 }
+
+.rootActive {
+  background-color: $white;
+  color: $fullBlack;
+}

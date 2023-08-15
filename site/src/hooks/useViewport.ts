@@ -1,28 +1,28 @@
 import { useEffect, useState } from 'react';
 
-const Viewport = {
-  desktop: 'desktop',
-  mobile: 'mobile',
-  tablet: 'tablet',
-};
+export enum ViewportEnum {
+  desktop = 'desktop',
+  mobile = 'mobile',
+  tablet = 'tablet',
+}
 
-export const getViewport = () => {
+export const getViewport = (): ViewportEnum => {
   const mediaQueryMobile = window.matchMedia(`(max-width: 767px)`);
   const mediaQueryTablet = window.matchMedia(`(max-width: 1024px)`);
 
   if (mediaQueryMobile.matches) {
-    return Viewport.mobile;
+    return ViewportEnum.mobile;
   }
 
   if (mediaQueryTablet.matches) {
-    return Viewport.tablet;
+    return ViewportEnum.tablet;
   }
 
-  return Viewport.desktop;
+  return ViewportEnum.desktop;
 };
 
 export const useViewport = () => {
-  const [currentViewPort, setCurrentViewport] = useState(null);
+  const [currentViewPort, setCurrentViewport] = useState<ViewportEnum>(ViewportEnum.desktop);
 
   useEffect(() => {
     const resize = () => {
@@ -40,10 +40,10 @@ export const useViewport = () => {
 
   return {
     isDesktop:
-      currentViewPort != null ? currentViewPort === Viewport.desktop : null,
+      currentViewPort != null ? currentViewPort === ViewportEnum.desktop : null,
     isTablet:
-      currentViewPort != null ? currentViewPort === Viewport.tablet : null,
+      currentViewPort != null ? currentViewPort === ViewportEnum.tablet : null,
     isMobile:
-      currentViewPort != null ? currentViewPort === Viewport.mobile : null,
+      currentViewPort != null ? currentViewPort === ViewportEnum.mobile : null,
   };
 };

@@ -12,7 +12,8 @@
       "images/*": ["public/images/*"],
       "constants/*": ["src/constants/*"],
       "stubs/*": ["src/stubs/*"],
-      "lottie/*": ["public/lottie/*"]
+      "lottie/*": ["public/lottie/*"],
+      "entities/*": ["src/domain/entities/*"]
     }
   }
 }

@@ -12,6 +12,5 @@ export const links = {
     { name: 'Research', link: '/research' },
     { name: 'About', link: '/about' },
     { name: 'Careers', link: '/careers' },
-    { name: 'Glossary', link: '/glossary' },
   ],
 };

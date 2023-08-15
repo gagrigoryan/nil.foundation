@@ -5,6 +5,7 @@ import { string, shape, arrayOf, number, bool } from 'prop-types';
 import Icon from 'components/Icon';
 import Button from 'components/Button';
 import TagButton from 'components/TagButton';
+import { Tag } from 'entities/tag';
 
 import s from './ResearchCard.module.scss';
 
@@ -14,11 +15,13 @@ const ResearchCard = ({ className, content, withTags }) => {
       href={content.link}
       className={cx(s.root, className)}
     >
-      <div className={s.info}>
-        <p className={s.author}>{content.author}</p>
-        <p className={s.date}>{content.date}</p>
+      <div>
+        <div className={s.info}>
+          <p className={s.author}>{content.author}</p>
+          <p className={s.date}>{content.date}</p>
+        </div>
+        <h3 className={s.title}>{content.title}</h3>
       </div>
-      <h2 className={s.title}>{content.title}</h2>
       {withTags && (
         <div className={s.tags}>
           {content.tags.map(tag => (
@@ -47,16 +50,7 @@ ResearchCard.propTypes = {
     date: string,
     title: string,
     link: string,
-    tags: arrayOf(
-      shape({
-        id: number,
-        name: string,
-        slug: string,
-        creataAt: string,
-        publishedAt: string,
-        updatedAt: string,
-      })
-    ),
+    tags: arrayOf(Tag),
   }),
 };
 

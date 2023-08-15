@@ -1,23 +1,17 @@
-import { func, string } from 'prop-types';
+import { bool, func, string } from 'prop-types';
 import cx from 'classnames';
 
 import Button from 'components/Button';
 
 import s from './TagButton.module.scss';
 
-const TagButton = ({ tag, className, onClick }) => {
-  return onClick ? (
+const TagButton = ({ tag, className, onClick, href, isActive }) => {
+  return (
     <Button
       cbData={tag}
       onClick={onClick}
-      className={cx(s.root, className)}
-    >
-      {tag}
-    </Button>
-  ) : (
-    <Button
-      className={cx(s.root, className)}
-      href={`/blog/tag/${tag}`}
+      className={cx(s.root, isActive && s.rootActive, className)}
+      href={href}
     >
       {tag}
     </Button>
@@ -27,7 +21,9 @@ const TagButton = ({ tag, className, onClick }) => {
 TagButton.propTypes = {
   className: string,
   tag: string,
+  href: string,
   onClick: func,
+  isActive: bool,
 };
 
 export default TagButton;

@@ -7,7 +7,8 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "default_user": "strapi admin:create-user --firstname=Admin --lastname=Adin --email=admin@nil.foundation --password=XYgiXDOcg4Lfpv6g"
   },
   "dependencies": {
     "@_sh/strapi-plugin-ckeditor": "^2.0.4",
